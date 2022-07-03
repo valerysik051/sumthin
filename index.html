@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Page</title>
+</head>
+<body>
+    <script>
+       let words = ["Гімназія", "Школа", "Університет", "Колледж", "Бурса", "Чмоня", "Какулька", "Житомир", "Іван", "ібе", "Кобилу", "Раком"];
+       let word = words[Math.floor(Math.random()*words.length)];
+       let answerArray = [];
+       for (let i=0; i<word.length; i++ ){
+           answerArray[i] = "_";
+       }
+
+       let remainingLetters = word.length;
+       let rung = 6;
+       let f = false;
+       while (remainingLetters > 0 && rung > 0){
+           alert("Життя " + rung + ".  Слово  " + answerArray.join(" "));
+           let guess = prompt("Введіть літеру.");
+
+           if (guess === null) {
+               break;
+           } else if (guess.length !== 1){
+               alert("Будь ласка, введіть одну літеру.");
+           } else {
+               for (let i = 0; i < word.length; i++){
+                   if(word[i].toLowerCase() === guess.toLowerCase() && answerArray[i] !== guess) {
+                       answerArray[i] = guess;
+                       remainingLetters--;
+                       f = true;
+                   }
+               }
+
+               if (!f){
+                   rung--;
+                   f = false;
+               }
+           }
+       }
+
+       if (rung > 0 && remainingLetters === 0){
+           alert(answerArray.join(" "));
+           alert("Гарна робота! Відповідь була " + word);
+       } else {
+           alert(answerArray.join(" "));
+           alert("Ви програли, невдха! Відповідь була " + word);
+       }
+
+
+    </script>
+</body>
+</html>
